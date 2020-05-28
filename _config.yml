@@ -73,17 +73,17 @@ social:
 
 # Analytics
 analytics:
-  provider               : false # false (default), "google", "google-universal", "custom"
+  provider               : "google"
   google:
-    tracking_id          :
-    anonymize_ip         : # true, false (default)
+    tracking_id          : "UA-167896958-1
+    anonymize_ip         : false
 
 
 # Site Author
 author:
   name             : "Robin Descamps"
   avatar           : "/assets/images/bio.jpg"
-  bio              : "A Cyber Security Consultant specialized in penetration testing and social engineering."
+  bio              : "A Cyber Security adept with a keen interest in reverse engineering, systems hacking and social engineering."
   location         : "Belgium"
   email            :
   links:
@@ -91,7 +91,7 @@ author:
       icon: "fas fa-fw fa-envelope-square"
       # url: "mailto:your.name@email.com"
     - label: "LinkedIn"
-      icon: "fas fa-fw fa-linkedin-square"
+      icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/RobinDescamps"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
@@ -110,7 +110,7 @@ author:
 footer:
   links:
     - label: "LinkedIn"
-      icon: "fas fa-fw fa-linkedin-square"
+      icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/RobinDescamps"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
