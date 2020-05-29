@@ -9,9 +9,9 @@ title: "Pwn Adventures 3 - A Windows Walkthrough"
 
 I hope you like it!
 
-![My helpful screenshot](/assets/bio.jpg)
+![My helpful screenshot](/assets/images/bio.jpg)
 
 ## Test
 
 This is a test
-![A game preview](/assets/try.gif)
+![A game preview](/assets/images/try.gif)
