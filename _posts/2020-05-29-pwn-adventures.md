@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Pwn Adventures 3 - A Windows Walkthrough"
 ---
 
