@@ -124,7 +124,7 @@ Patching the condition line from `je` to `jne` (inversion of the condition), we 
 
 For the next flags we will exploit the communications to and from the server. This is because it is not possible to perform all actions from the client alone, one example is the player position. Although it is possible to hack the player position where we want locally, it needs to be sent and validated by the server.
 
-First we need to understand the communication protocol: by using our proxy or a tool like Wireshark, we observe that hexadecimal data are sent between the client and the server. Event though our understanding of the protocol implies some guesses, the options are limited: the data are represented in formats such as Char, String, Integers, Floats, etc. and are probably ordered following a typical methodology like the [TLV](https://en.wikipedia.org/wiki/Type-length-value).
+First we need to understand the communication protocol: by using our proxy or a tool like Wireshark, we observe that hexadecimal data are sent between the client and the server. Event though our understanding of the protocol implies some guesses, the options are limited: the data are represented in formats such as Char, String, Integer, Float, etc. and are probably ordered following a typical methodology like the [TLV](https://en.wikipedia.org/wiki/Type-length-value).
 
 ![Network protocol](/assets/images/pwn-adventure/communication-protocol.png)
 
@@ -152,7 +152,7 @@ From there it seems necessary to hack the player position to somewhere safe, out
 ![Movement data](/assets/images/pwn-adventure/communication-movement.png)
 *Movement data structure*
 
-The part that we want to tamper with is the position. We know that in a 3D environement, 3 coordinates (X, Y, Z) are enough to define a position. From there, what remains to do is guess the number format. There are only a few options, since we have 12 bytes in total and we would need floating point numbers in this context. After some tries, we confirm that a translation using the float data type give us the right coordinates.
+The part that we want to tamper with is the position. We know that in a 3D environment, 3 coordinates (X, Y, Z) are enough to define a position. From there, what remains to do is guess the number format. There are only a few options, since we have 12 bytes in total and we would need floating point numbers in this context. After some tries, we confirm that a translation using the float data type give us the right coordinates.
 
 ![Data type of the movement data](/assets/images/pwn-adventure/communication-data-types.png)
 
