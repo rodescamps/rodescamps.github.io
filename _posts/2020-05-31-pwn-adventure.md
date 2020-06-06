@@ -1,5 +1,5 @@
 ---
-title: "Pwn Adventure 3: Walktrough"
+title: "Pwn Adventure 3: Walkthrough"
 header:
   teaser: /assets/images/pwn-adventure/teaser.png
   image: /assets/images/pwn-adventure/pwnie-island.png
