@@ -105,6 +105,9 @@ author:
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       # url: "https://instagram.com/"
+    - label: "HackTheBox"
+      icon: "fas fa-fw fa-cube"
+      url: "https://www.hackthebox.eu/profile/87592"
 
 # Site Footer
 footer:
@@ -130,6 +133,9 @@ footer:
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       # url:
+    - label: "HackTheBox"
+      icon: "fas fa-fw fa-cube"
+      url: "https://www.hackthebox.eu/profile/87592"
 
 
 # Reading Files

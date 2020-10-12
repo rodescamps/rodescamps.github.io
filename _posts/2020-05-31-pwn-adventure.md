@@ -16,17 +16,17 @@ tags:
 
 # What is Pwn Adventure?
 
-By discovering the videos from [LiveOverflow](https://www.youtube.com/channel/UClcE-kVhqyiHCcjYwcpfj9w/featured), I landed on his series of videos about "[Pwn Adventure 3: Pwnie Island](https://www.pwnadventure.com/)". This is a video game created by Vector 35 for the Ghost in the Shellcode CTF that took place in 2015. This MMORPG is intentionally vulnerable, replacing classical quests with exploits, featuring network communications tampering with the game server, and reverse engineering techniques againt the game client.
+By discovering the videos from [LiveOverflow](https://www.youtube.com/channel/UClcE-kVhqyiHCcjYwcpfj9w/featured), I landed on his series of videos about "[Pwn Adventure 3: Pwnie Island](https://www.pwnadventure.com/)". This is a video game created by Vector 35 for the Ghost in the Shellcode CTF that took place in 2015. This MMORPG is intentionally vulnerable, replacing classical quests with exploits, featuring network communications tampering with the game server, and reverse engineering techniques against the game client.
 
-Since video game is not a prevalent hacking category among the CTF competitions or the existing training platforms, I was curious to see how many flags I would be able to find by playing this game myself.
+Since video game is not a prevalent hacking category among the CTF competitions nor the existing training platforms, I was curious to see how many flags I would be able to find by playing this game myself.
 
 The game client is available on Linux and Windows systems. I chose the Windows version for two reasons:
-- Nowadays, all PC video games are more common on Windows systems rather than on Linux systems;
+- Nowadays, PC video games are more common on Windows systems than on Linux systems;
 - LiveOverflow leveraged the Linux game client for his walkthrough, and I wanted to adopt a different approach.
 
 # Setup and tools
 
-After installing the Windows game client, we will need to set up our own private game server, since the public ones do not exist anymore (and even if they did, this would be a nightmare to mess with the server at the same time as other hackers). In addition to that, we will need tools for the client and the server communications analysis.
+After installing the Windows game client, we will need to set up our own private game server, since the public ones do not exist anymore (and even if they did, this would be a nightmare to mess with the server at the same time as other hackers). In addition to that, we will need tools for the client and the server communication analysis.
 
 ## Private server
 
@@ -38,7 +38,7 @@ For the client analysis, I decided to use the reverse engineering tool by the sa
 
 ## Server proxy
 
-In order to intercept and tamper the network communications to and from the server, the easiest solution is to set up a [proxy](/assets/files/PwnAdventure-proxy.zip) server between the client and the server. I adapted the Python code written by LiveOverflow from the same repository evoked above. Note that the code is far from optimized and still contains research comments from both LiveOverflow and myself.
+In order to intercept and tamper the network communications to and from the server, the easiest solution is to set up a [proxy](/assets/files/PwnAdventure-proxy.zip) server between the client and the server. I adapted the Python code written by LiveOverflow from the same repository evoked above. Note that the code is far from optimised and still contains research comments from both LiveOverflow and myself.
 
 # Client-side exploits
 
@@ -56,7 +56,7 @@ We just open the DLL file in Binary Ninja and import the PDB file in **Tools > P
 
 ## Speed acceleration
 
-Before starting any quest, it would be practical to spend less time exploring the island because we do not have any way to fly or teleport. Since flying is not possible (at least not easily) and teleporting is limited by the Travel System (see below), an easy solution would be to increase our moving speed. By searching on *Player* in the symbols, we find a `Player::GetSprintMultiplier` function.
+Before starting any quest, it would be practical to spend less time exploring the island because we do not have any way to fly nor teleport. Since flying is not possible (at least not easily) and teleporting is limited by the Travel System (see below), an easy solution would be to increase our moving speed. By searching on *Player* in the symbols, we find a `Player::GetSprintMultiplier` function.
 
 ![Player search](/assets/images/pwn-adventure/sprint-search.png)
 
@@ -152,7 +152,7 @@ From there it seems necessary to hack the player position to somewhere safe, out
 ![Movement data](/assets/images/pwn-adventure/communication-movement.png)
 *Movement data structure*
 
-The part that we want to tamper with is the position. We know that in a 3D environment, 3 coordinates (X, Y, Z) are enough to define a position. From there, what remains to do is guess the number format. There are only a few options, since we have 12 bytes in total and we would need floating point numbers in this context. After some tries, we confirm that a translation using the float data type give us the right coordinates.
+The part that we want to tamper with is the position. We know that in a 3D environment, 3 coordinates (X, Y, Z) are enough to define a position. From there, what remains to do is guess the number format. There are only a few options, since we have 12 bytes in total and we would need floating point numbers in this context. After some tries, we confirm that a translation using the float data type gives us the right coordinates.
 
 ![Data type of the movement data](/assets/images/pwn-adventure/communication-data-types.png)
 
@@ -225,7 +225,7 @@ From there, we have two options:
 - Go get all the eggs manually;
 - Be lazy and find a solution to avoid searching for the eggs scattered around the island.
 
-By going for the first option, we will quickly realize that the second option will become necessary, as some eggs cannot be reached without getting around the physical limits of the game. Some eggs will require at least a mechanism that allows us to fly or teleport.
+By going for the first option, we will quickly realise that the second option will become necessary, as some eggs cannot be reached without getting around the physical limits of the game. Some eggs will require at least a mechanism that allows us to fly or teleport.
 
 The good news is that we are already able to teleport where we want on the map, even to places we cannot reach normally (cfr. the Unbearable Revenge, where we were able to get inside a tree). However, once at the correct location we still need to trigger the "Pick up" action to collect the egg. So, let's see the data structure of a pick-up action. We can intercept such a communication by picking up a first egg that we can reach normally:
 
@@ -306,7 +306,7 @@ So far I was able to get 750 / 1950 points available for this video game CTF. Th
 | (300 pts) Fire and Ice		| **Locked**				| 				|
 | (400 pts) Blocky's Revenge		| **Locked**				| 				|
 
-From the exploits presented above, we can already understand why video game developers must consider the security a very important aspect, and this is achieved with several principles and mechanisms that we can observe in video games nowadays, especially when most of them integrate an online aspect (more or less critical according to the game category):
+From the exploits presented above, we can already understand why video game developers must consider security as a very important aspect, and this is achieved with several principles and mechanisms that we can observe in video games nowadays, especially when most of them integrate an online aspect (more or less critical according to the game category):
 - Never trust the client
 - Store secret information on the server
 - Establish a patch management
