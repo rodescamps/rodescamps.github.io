@@ -28,7 +28,7 @@ teaser                   : "/assets/images/teaser-fallback.png"
 logo                     : "/assets/images/CharonV-logo.png"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
 # breadcrumbs            : false # true, false (default)
-words_per_minute         : 100
+words_per_minute         : 200
 comments:
   provider               : "disqus"
   disqus:
