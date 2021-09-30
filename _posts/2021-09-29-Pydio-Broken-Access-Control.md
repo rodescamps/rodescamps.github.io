@@ -26,7 +26,7 @@ CVSS: 6.5 (*AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:N*)
 
 Directory traversal in the Compress feature in Pydio Cells 2.2.9 allows remote authenticated users to overwrite personal files, or Cells files belonging to any user, via the format parameter.
 
-# CVE-2021-41323 - File enumeration through injection in copy/move/delete feature
+# CVE-2021-41324 - File enumeration through injection in copy/move/delete feature
 Security risk: **Medium**
 
 CVSS: 4.3 (*AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N*)
