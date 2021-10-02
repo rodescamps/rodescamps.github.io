@@ -13,9 +13,9 @@ tags:
 
 # A modern open-source file-sharing solution
 
-[Pydio](https://pydio.com/) developped a file-sharing solution written in Go used by many large organisations worldwide. It is a direct competitor to other known solutions in it domain such as ownCloud, Nextcloud, Seafile, Syncthing, etc. As any web application, Pydio Cells is not immune to security issues, and I decided to target this solution during one week of research to assess its security level. This project seemed to be a perfect example of a modern [open-source](https://github.com/pydio/cells) web application used by many large companies, and I was curious to see how difficult it was to breach its defenses. I did not expect to obtain the results I present hereafter.
+[Pydio](https://pydio.com/) developped a file-sharing solution written in Go used by many large organisations worldwide. It is a direct competitor to other known solutions in it domain such as ownCloud, Nextcloud, Seafile, Syncthing, etc. As any web application, Pydio Cells is not immune to security issues, and I decided to target this solution during one week of research to assess its security level. This project seemed to be a perfect example of a modern [open-source web application](https://github.com/pydio/cells) used by many large companies, and I was curious to see how difficult it was to breach its defenses. I did not expect to obtain the results I present hereafter.
 
-The following three vulnerabilities affect the **Pydio Cells Home v2.2.9** solution.
+The following three vulnerabilities affect **Pydio Cells & Enterprise v2.2.9**.
 
 The detailed proofs of concept will be published soon in this post.
 
