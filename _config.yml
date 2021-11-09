@@ -92,7 +92,7 @@ author:
       # url: "mailto:your.name@email.com"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
-      url: "https://www.linkedin.com/in/RobinDescamps"
+      url: "https://www.linkedin.com/in/robindescamps/"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       # url: "https://twitter.com/"
@@ -107,7 +107,7 @@ author:
       # url: "https://instagram.com/"
     - label: "HackTheBox"
       icon: "fas fa-fw fa-cube"
-      url: "https://www.hackthebox.eu/profile/87592"
+      url: "https://app.hackthebox.eu/profile/87592"
 
 # Site Footer
 footer:
