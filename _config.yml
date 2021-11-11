@@ -83,7 +83,7 @@ analytics:
 author:
   name             : "Robin Descamps"
   avatar           : "/assets/images/bio.jpg"
-  bio              : "Cyber Security adept"
+  bio              : "Ethical hacker"
   location         : "Belgium"
   email            :
   links:
@@ -117,7 +117,7 @@ footer:
       url: "https://www.linkedin.com/in/RobinDescamps"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
-      # url:
+      url: "https://twitter.com/Char0nV"
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook-square"
       # url:
