@@ -26,26 +26,6 @@ Successful exploitation of this vulnerability could allow an attacker to:
 - Upload an archive containing malicious files, or replace sensitive files with attacker's content in a *Cell* or personal folder to trick or mislead the targeted user;
 - Brute-force filenames to overwrite (and erase the content) of files in (all) *Cells* and personal folders.
 
-## Security Risk
-
-| Security risk | CVSS score    | CVSS vector |
-| ------------- | ------------- | ----------- |
-| **Medium**     | 6.5 | AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:N  |
-
-- **Likelihood**: An attacker needs a valid account on the targeted Pydio Cells instance (this attack does not work with "*Shared accounts*"). The attacker also needs valid filenames, which can be guessed or brute-forced through this vulnerability. Furthermore:
-    - To conduct the attack against the personal folders, the attacker must know all the usernames targeted. This is already achieved by owning a valid account, the "*Directory*" feature list all the users of the Pydio Cells instance;
-    - To conduct the attack against the "*Cells*", the attacker must know the "*Cell*" names targeted. These names can be guessed or brute-forced, since they are chosen by other users.
-
-- **Impact**: This vulnerability allows an attacker to write files in the following locations:
-
-    - data/cellsdata (*Cells* folders);
-    - data/personal (Personal folders);
-    - data/pydiods1 (Common files).
-
-Integrity of all users files is at risk. A first attack scenario consists in uploading an archive containing malicious files, or replace sensitive files with attacker's content in a *Cell* or personal folder to trick or mislead the targeted user. A second scenario consists in brute-forcing filenames to overwrite (and erase the content) of files in (all) *Cells* and personal folders. 
-
-Note that it is not possible to write files outside of these locations. It is also impossible to overwrite folders or .pydio files in these locations using this vulnerability.
-
 ## Proof of concept
 
 The web request issued when compressing a file is the following. The example consists in a user *charonv* compressing *somefile.txt* in his/her personal files using the ZIP format.
@@ -122,28 +102,7 @@ Copy, Move and Delete features (when right-clicking on a file) allow any authent
 
 Successful exploitation of this vulnerability could allow an attacker to enumerate valid file names in any user personal folder or in any "*Cell*".
 
-## Security Risk
-
-| Security risk | CVSS score    | CVSS vector |
-| ------------- | ------------- | ----------- |
-| **Medium**     | 4.3 | AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N  |
-
-- **Likelihood**: An attacker needs a valid account on the targeted Pydio Cells instance (this attack does not work with "*Shared accounts*"). The attacker also needs to guess or brute-force valid filenames through this vulnerability. Furthermore:
-    - To conduct the attack against the personal folders, the attacker must know all the usernames targeted. This is already achieved by owning a valid account, the "*Directory*" feature list all the users of the Pydio Cells instance;
-    - To conduct the attack against the "*Cells*", the attacker must know the "*Cell*" names targeted. These names can be guessed or brute-forced, since they are defined by other users.
-
-- **Impact**: This vulnerability allows an attacker to list files and directories in the following locations:
-
-    - data/cellsdata (*Cells* folders);
-    - data/personal (Personal folders);
-    - data/pydiods1 (Common files).
-
-Confidentiality of all user files is at risk. File and directory names can contain confidential information (e.g. confidential names, personal information, dates, etc.). This information can consist of a security impact directly or could be used by an attacker for further attacks, for example social engineering attacks (phishing, etc.).
-
-Note that it is not possible to list files and directories outside of these locations.
-
 ## Proof of concept
-
 For the three features, we get a different HTTP error code and response content that allow us to determine if a certain file or directory exists in the requested location.
 
 ### Copy feature
@@ -250,24 +209,6 @@ Connection: close
 The share feature allows an attacker with a valid "/public/" link to enumerate Cells instance users, create a persistent user (with rights similar to a "standard" account), and escalate the rights of this user so that it receives the "ADMINS" role, giving some administrative privileges.
 
 Successful exploitation of this vulnerability could allow an attacker with a valid "/public/" link to enumerate all Cells instance usernames (along with their status, e.g. admin), read part of the configuration and delete any user or any role.
-
-## Security Risk
-
-| Security risk | CVSS score    | CVSS vector |
-| ------------- | ------------- | ----------- |
-| **High**     | 7.1 | AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:H  |
-
-- **Likelihood**: An attacker must obtain a valid shared file/folder ("/public/" link). The rights or amount/location of directories/files he/she has access to does not matter.
-
-- **Impact**: This vulnerability allows an attacker to create accounts similar to "standard" accounts on the Pydio Cells instance. Furthermore, he/she is able to add the role "ADMINS" to such an account, so that the attacker can also:
-
-    - Enumerate all Cells instance users (and their corresponding status: "admin", "standard" or "shared");
-    - List the workspaces;
-    - List the plugins installed;
-    - Remove any instance user (including admins);
-    - Remove any role.
-
-Confidentiality of the Cells instance is at risk, since information collected with the access described above can help an attacker designing further attacks, e.g. hijacking other account access through brute-forcing or social engineering. Availability is also threatened through the same vulnerability, as an attacker can delete all existing accounts and roles of the Cells instance. Manual intervention of a server administrator will be required to recreate an "admin" account and to restore all other accounts with their files. Note that the files will still be stored on the server, but not accessible through the web application.
 
 ## Proof of concept
 
