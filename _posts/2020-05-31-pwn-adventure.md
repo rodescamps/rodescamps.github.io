@@ -60,7 +60,7 @@ Before starting any quest, it would be practical to spend less time exploring th
 
 ![Player search](/assets/images/pwn-adventure/sprint-search.png)
 
-This funtion returns a certain number (an integer) that is equals to 1 077 936 128 (in decimal).
+This function returns a certain number (an integer) that is equals to 1 077 936 128 (in decimal).
 
 ![Player::GetSprintMultiplier function](/assets/images/pwn-adventure/sprint-function.png)
 
@@ -89,7 +89,7 @@ By searching on the library symbols, we find an explicit function: `Player::GetF
 
 ![Fast travel function](/assets/images/pwn-adventure/fast-travel-function.png)
 
-The first obvious step would be to replace a destination by another one (by respecting the exact name and integer of the destination to insert), to observe that it is succesful. For example, we can add twice the same known destination.
+The first obvious step would be to replace a destination by another one (by respecting the exact name and integer of the destination to insert), to observe that it is successful. For example, we can add twice the same known destination.
 
 ![Fast travel hacked](/assets/images/pwn-adventure/fast-travel-hacked.png)
 
@@ -97,7 +97,7 @@ Going further, we wonder if some secret destination is available and hidden in t
 
 ![Fast travel secret destination](/assets/images/pwn-adventure/fast-travel-secret.png)
 
-We can insert these two desintation names in the function to see if it is working. The only missing information is this small number associated with each destination. By comparing each value to the known destination, we understand that it corresponds to the length of the destination name (in hexadecimal). We can then deduce the value that we need to provide for our two secret destination attempts.
+We can insert these two destination names in the function to see if it is working. The only missing information is this small number associated with each destination. By comparing each value to the known destination, we understand that it corresponds to the length of the destination name (in hexadecimal). We can then deduce the value that we need to provide for our two secret destination attempts.
 
 | Value		| Destination		|
 | -----		| -----------		|
@@ -124,7 +124,7 @@ Patching the condition line from `je` to `jne` (inversion of the condition), we 
 
 For the next flags we will exploit the communications to and from the server. This is because it is not possible to perform all actions from the client alone, one example is the player position. Although it is possible to hack the player position where we want locally, it needs to be sent and validated by the server.
 
-First we need to understand the communication protocol: by using our proxy or a tool like Wireshark, we observe that hexadecimal data are sent between the client and the server. Event though our understanding of the protocol implies some guesses, the options are limited: the data are represented in formats such as Char, String, Integer, Float, etc. and are probably ordered following a typical methodology like the [TLV](https://en.wikipedia.org/wiki/Type-length-value).
+First we need to understand the communication protocol: by using our proxy or a tool like Wireshark, we observe that hexadecimal data are sent between the client and the server. Even though our understanding of the protocol implies some guesses, the options are limited: the data are represented in formats such as Char, String, Integer, Float, etc. and are probably ordered following a typical methodology like the [TLV](https://en.wikipedia.org/wiki/Type-length-value).
 
 ![Network protocol](/assets/images/pwn-adventure/communication-protocol.png)
 
@@ -186,7 +186,7 @@ cmd = raw_input('PwnProxy$ ')
 
 By the way, we can observe that even though our player is still on the ground in our game (the client), the bears see our character in the tree since this data is changed on the server side and not on the client side, which is a key aspect here. Unluckily, hiding high in the tree is not enough to be out of range of the weapons.
 
-Since we are still in the zone when we "climb" in the tree, we could guess that the zone is delimited by a sphere around the chest. We could then fake our position beneath the ground and thus be physically protected againt all types of attacks.
+Since we are still in the zone when we "climb" in the tree, we could guess that the zone is delimited by a sphere around the chest. We could then fake our position beneath the ground and thus be physically protected against all types of attacks.
 
 ![Bear quest: 3rd attempt](/assets/images/pwn-adventure/bear-3.gif)
 *Unbearable Revenge: 3rd attempt*
@@ -227,7 +227,7 @@ From there, we have two options:
 
 By going for the first option, we will quickly realise that the second option will become necessary, as some eggs cannot be reached without getting around the physical limits of the game. Some eggs will require at least a mechanism that allows us to fly or teleport.
 
-The good news is that we are already able to teleport where we want on the map, even to places we cannot reach normally (cfr. the Unbearable Revenge, where we were able to get inside a tree). However, once at the correct location we still need to trigger the "Pick up" action to collect the egg. So, let's see the data structure of a pick-up action. We can intercept such a communication by picking up a first egg that we can reach normally:
+The good news is that we are already able to teleport where we want on the map, even to places we cannot reach normally (see the Unbearable Revenge, where we were able to get inside a tree). However, once at the correct location we still need to trigger the "Pick up" action to collect the egg. So, let's see the data structure of a pick-up action. We can intercept such a communication by picking up a first egg that we can reach normally:
 
 ![Pick up data format](/assets/images/pwn-adventure/pickup-data.png)
 *Pick-up action data structure*
@@ -269,7 +269,7 @@ We add 5 seconds of delay between each egg collected as the server seems to perf
 
 ![Almost all eggs collected](/assets/images/pwn-adventure/egg-1.gif)
 
-This worked pretty well, except that one of the egg was not collected succesfully. It is the egg that has a different name: the *BallmerPeakEgg*. By going manually to its position, we are supposed to find it at a cabin in the mountains, but it is nowhere to be found.
+This worked pretty well, except that one of the egg was not collected successfully. It is the egg that has a different name: the *BallmerPeakEgg*. By going manually to its position, we are supposed to find it at a cabin in the mountains, but it is nowhere to be found.
 
 The solution here consists in going back to the game client analysis, and search for "ballmer" in the library symbols. We find a curious function named `BallmerPeakPoster::Damage`, which contains code that include the **CowboyCoder**, one of the weapons available in the game.
 
